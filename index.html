@@ -72,7 +72,18 @@
     <header class="bg-brand-dark text-white shadow-lg sticky top-0 z-50">
         <div class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <i data-lucide="shield-check" class="w-8 h-8 text-brand-green"></i>
+                <!-- Custom Dental Assistant / Nurse Icon -->
+                <svg class="w-10 h-10 text-brand-green fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Head -->
+                    <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2" fill="none"/>
+                    <!-- Shoulders -->
+                    <path d="M4 20C4 16 8 14 12 14C16 14 20 16 20 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <!-- Nurse Cap -->
+                    <path d="M9 5L10 3H14L15 5" stroke="currentColor" stroke-width="2" fill="currentColor"/>
+                    <!-- Cross on cap -->
+                    <path d="M12 3V5 M11 4H13" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                
                 <div>
                     <h1 class="text-xl font-bold leading-tight">Confidentiality & Reporting</h1>
                     <p class="text-xs text-brand-accent opacity-90">CHCCOM005 & CHCDIV001</p>
@@ -254,7 +265,7 @@
         </section>
 
         <!-- Activity 3: True or False -->
-        <section class="space-y-6 pb-12">
+        <section class="space-y-6">
             <div class="flex items-center space-x-2 border-b-2 border-brand-light pb-2">
                 <div class="bg-brand-dark text-white p-2 rounded-lg">
                     <i data-lucide="check-square" class="w-5 h-5"></i>
@@ -348,6 +359,53 @@
             </div>
         </section>
 
+        <!-- Activity 4: WHS & Safety (New Section) -->
+        <section class="space-y-6 pb-12">
+            <div class="flex items-center space-x-2 border-b-2 border-brand-light pb-2">
+                <div class="bg-brand-dark text-white p-2 rounded-lg">
+                    <!-- Alarm Icon for WHS -->
+                    <i data-lucide="siren" class="w-5 h-5"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-brand-dark">Part 4: WHS & Safety Reporting</h3>
+            </div>
+            
+            <div class="glass-panel p-6 rounded-xl shadow-md border-l-4 border-red-500 hover:shadow-lg transition-shadow">
+                 <div class="flex justify-between items-start mb-2">
+                    <div class="flex items-center space-x-2">
+                        <h4 class="font-bold text-lg text-brand-dark">Scenario D: The Slippery Floor</h4>
+                        <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded font-semibold">Safety Hazard</span>
+                    </div>
+                     <button onclick="readText('Scenario D. You notice a puddle of water in the waiting room near the electrical cords. What is your immediate WHS obligation?', this)" class="text-brand-dark hover:text-brand-green p-1 rounded-full hover:bg-gray-100 transition-colors" title="Listen to Scenario">
+                        <i data-lucide="play-circle" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                <p class="text-gray-700 mb-4 text-sm bg-red-50 p-3 rounded border border-red-100">
+                    You notice a puddle of water in the waiting room near the electrical cords.
+                </p>
+                
+                <div class="space-y-4">
+                    <div>
+                        <p class="font-semibold text-sm text-brand-dark mb-1">What is your immediate WHS obligation?</p>
+                        <div class="flex flex-col space-y-2 mt-2">
+                            <label class="flex items-center space-x-2 cursor-pointer p-2 rounded hover:bg-gray-50">
+                                <input type="radio" name="scenario_whs" class="accent-brand-dark" value="wrong"> <span>Wait for the cleaners to arrive tonight.</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer p-2 rounded hover:bg-gray-50">
+                                <input type="radio" name="scenario_whs" class="accent-brand-dark" value="correct"> <span>Report it immediately and place a warning sign/cone.</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer p-2 rounded hover:bg-gray-50">
+                                <input type="radio" name="scenario_whs" class="accent-brand-dark" value="wrong"> <span>Ignore it, it's not in the dental surgery room.</span>
+                            </label>
+                        </div>
+                    </div>
+                    <button onclick="checkWHS()" class="text-sm text-brand-dark font-semibold hover:text-brand-green flex items-center transition-colors">
+                        <i data-lucide="check-circle" class="w-4 h-4 mr-1"></i> Check Safety Response
+                    </button>
+                    <div id="ans-whs" class="hidden p-4 rounded-lg border text-sm text-gray-800 animate-fade-in"></div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer -->
@@ -367,27 +425,39 @@
         });
 
         /* --- AUDIO SYSTEM --- */
-        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        let audioCtx;
 
         // 1. Sound Effects (Synth)
-        function playTone(freq, type, duration) {
+        // Initialize AudioContext lazily on user interaction
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
             if (audioCtx.state === 'suspended') {
                 audioCtx.resume();
             }
-            const osc = audioCtx.createOscillator();
-            const gainNode = audioCtx.createGain();
+        }
 
-            osc.type = type; // 'sine', 'square', 'sawtooth', 'triangle'
-            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-            
-            gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+        function playTone(freq, type, duration) {
+            // Ensure audio context is ready
+            initAudio();
 
-            osc.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
+            if (audioCtx) {
+                const osc = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
 
-            osc.start();
-            osc.stop(audioCtx.currentTime + duration);
+                osc.type = type; // 'sine', 'square', 'sawtooth', 'triangle'
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                
+                gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+
+                osc.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            }
         }
 
         function playSuccess() {
@@ -536,6 +606,27 @@
             } else {
                 resultDiv.className = "mt-4 p-4 rounded-lg text-center font-bold bg-brand-light text-brand-dark";
                 resultDiv.innerHTML = `You got ${score}/${total}. <br> <span class="text-sm font-normal">Review the scenarios and try again to ensure full compliance.</span>`;
+                playError();
+            }
+        }
+
+        // WHS CHECK
+        function checkWHS() {
+            const val = document.querySelector('input[name="scenario_whs"]:checked')?.value;
+            const result = document.getElementById('ans-whs');
+            
+            if (!val) return;
+
+            result.classList.remove('hidden');
+            result.classList.remove('bg-green-50', 'border-brand-lightGreen', 'bg-red-50', 'border-red-300');
+
+            if (val === 'correct') {
+                result.classList.add('bg-green-50', 'border', 'border-brand-lightGreen');
+                result.innerHTML = "<strong>Correct!</strong> Under WHS laws, you must address immediate hazards to prevent injury.";
+                playSuccess();
+            } else {
+                result.classList.add('bg-red-50', 'border', 'border-red-300');
+                result.innerHTML = "<strong>Incorrect.</strong> Ignoring hazards can lead to serious injury and liability. Always report and secure the area.";
                 playError();
             }
         }
