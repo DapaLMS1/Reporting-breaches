@@ -1,635 +1,1321 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dental Privacy & Confidentiality Learning Activity</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            dark: '#532A8C',
-                            light: '#9D8ABB',
-                            green: '#7ABF49',
-                            lightGreen: '#96BF78',
-                            bg: '#F2F2F2',
-                            accent: '#C3ACE8'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Poppins', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            background-color: #F2F2F2;
-        }
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .fade-in {
-            animation: fadeIn 0.5s ease-in;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .correct-anim {
-            animation: bounce 0.5s;
-        }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-        /* Pulse animation for the listening button */
-        .speaking {
-            animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-        }
-        @keyframes pulse-ring {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(83, 42, 140, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(83, 42, 140, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(83, 42, 140, 0); }
-        }
-    </style>
-</head>
-<body class="text-gray-800 font-sans min-h-screen flex flex-col">
 
-    <!-- Header -->
-    <header class="bg-brand-dark text-white shadow-lg sticky top-0 z-50">
-        <div class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <!-- Custom Dental Assistant / Nurse Icon -->
-                <svg class="w-10 h-10 text-brand-green fill-current" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Head -->
-                    <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2" fill="none"/>
-                    <!-- Shoulders -->
-                    <path d="M4 20C4 16 8 14 12 14C16 14 20 16 20 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    <!-- Nurse Cap -->
-                    <path d="M9 5L10 3H14L15 5" stroke="currentColor" stroke-width="2" fill="currentColor"/>
-                    <!-- Cross on cap -->
-                    <path d="M12 3V5 M11 4H13" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-                </svg>
-                
-                <div>
-                    <h1 class="text-xl font-bold leading-tight">Confidentiality & Reporting</h1>
-                    <p class="text-xs text-brand-accent opacity-90">CHCCOM005 & CHCDIV001</p>
-                </div>
-            </div>
-            <div class="hidden sm:block text-sm font-medium text-brand-lightGreen">
-                The Guardian of Information
-            </div>
-        </div>
+<html lang="en-AU">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reporting Obligations - Dental Assistant Training</title>
+
+    <style>
+
+        /* BRAND COLOUR PALETTE */
+
+        :root {
+
+            --primary-purple: #532A8C;
+
+            --secondary-purple: #9D8ABB;
+
+            --accent-green: #7ABF49;
+
+            --light-green: #96BF78;
+
+            --bg-grey: #F2F2F2;
+
+            --lavender: #C3ACE8;
+
+            --white: #ffffff;
+
+            --text-dark: #333333;
+
+            --overlay-bg: rgba(83, 42, 140, 0.85); /* Purple overlay */
+
+        }
+
+
+
+        body {
+
+            font-family: 'Segoe UI', Arial, sans-serif;
+
+            background-color: var(--bg-grey);
+
+            background-image: linear-gradient(135deg, #F2F2F2 0%, #e8e0f5 100%);
+
+            color: var(--text-dark);
+
+            margin: 0;
+
+            padding: 0;
+
+            line-height: 1.6;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            flex-direction: column;
+
+        }
+
+
+
+        /* HEADER */
+
+        header {
+
+            background: linear-gradient(to right, var(--primary-purple), var(--secondary-purple));
+
+            color: var(--white);
+
+            padding: 40px 20px;
+
+            text-align: center;
+
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+
+            margin-bottom: 20px;
+
+        }
+
+
+
+        header h1 {
+
+            margin: 0;
+
+            font-size: 2.8rem;
+
+            font-weight: 700;
+
+            letter-spacing: -1px;
+
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+
+        }
+
+
+
+        header p {
+
+            margin-top: 10px;
+
+            font-size: 1.2rem;
+
+            color: #f0f0f0;
+
+            font-weight: 300;
+
+        }
+
+
+
+        /* MAIN CONTAINER - GRID LAYOUT */
+
+        .container {
+
+            max-width: 1100px;
+
+            margin: 0 auto;
+
+            padding: 20px;
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 30px;
+
+            flex: 1;
+
+        }
+
+
+
+        /* CARD STYLING */
+
+        .card {
+
+            background-color: var(--white);
+
+            border-radius: 15px;
+
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+
+            padding: 30px;
+
+            text-align: center;
+
+            cursor: pointer;
+
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+            border-bottom: 5px solid var(--accent-green);
+
+            position: relative;
+
+            overflow: hidden;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            min-height: 250px;
+
+        }
+
+
+
+        .card:hover {
+
+            transform: translateY(-10px);
+
+            box-shadow: 0 15px 30px rgba(83, 42, 140, 0.2);
+
+            border-bottom-color: var(--primary-purple);
+
+        }
+
+
+
+        /* CARD ICONS & ANIMATION */
+
+        .icon-circle {
+
+            width: 80px;
+
+            height: 80px;
+
+            background-color: rgba(122, 191, 73, 0.1);
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-bottom: 20px;
+
+            transition: background-color 0.3s ease, transform 0.3s ease;
+
+        }
+
+
+
+        .card:hover .icon-circle {
+
+            background-color: var(--primary-purple);
+
+            transform: scale(1.1);
+
+        }
+
+
+
+        .card:hover .icon-circle svg {
+
+            stroke: var(--white);
+
+        }
+
+
+
+        .card svg {
+
+            width: 40px;
+
+            height: 40px;
+
+            stroke: var(--primary-purple);
+
+            stroke-width: 2;
+
+            fill: none;
+
+            stroke-linecap: round;
+
+            stroke-linejoin: round;
+
+            transition: stroke 0.3s ease;
+
+        }
+
+
+
+        .card h2 {
+
+            font-size: 1.4rem;
+
+            color: var(--primary-purple);
+
+            margin: 0 0 10px 0;
+
+        }
+
+
+
+        .card p.preview {
+
+            font-size: 0.95rem;
+
+            color: #666;
+
+            margin: 0;
+
+        }
+
+
+
+        .card-btn {
+
+            margin-top: 20px;
+
+            padding: 8px 20px;
+
+            border-radius: 20px;
+
+            background-color: var(--bg-grey);
+
+            color: var(--primary-purple);
+
+            font-weight: 600;
+
+            font-size: 0.9rem;
+
+            border: none;
+
+            transition: all 0.3s ease;
+
+        }
+
+
+
+        .card:hover .card-btn {
+
+            background-color: var(--accent-green);
+
+            color: var(--white);
+
+        }
+
+
+
+        /* MODAL (POPUP) STYLING */
+
+        .modal-overlay {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background-color: var(--overlay-bg);
+
+            backdrop-filter: blur(5px);
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            z-index: 1000;
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+
+            padding: 20px;
+
+        }
+
+
+
+        .modal-overlay.active {
+
+            opacity: 1;
+
+            visibility: visible;
+
+        }
+
+
+
+        .modal-content {
+
+            background-color: var(--white);
+
+            width: 100%;
+
+            max-width: 700px;
+
+            max-height: 85vh;
+
+            border-radius: 12px;
+
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+
+            overflow-y: auto;
+
+            position: relative;
+
+            transform: scale(0.9);
+
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+            border-top: 8px solid var(--primary-purple);
+
+        }
+
+
+
+        .modal-overlay.active .modal-content {
+
+            transform: scale(1);
+
+        }
+
+
+
+        .close-btn {
+
+            position: absolute;
+
+            top: 15px;
+
+            right: 20px;
+
+            background: none;
+
+            border: none;
+
+            font-size: 2rem;
+
+            color: #999;
+
+            cursor: pointer;
+
+            transition: color 0.3s ease;
+
+            z-index: 10;
+
+        }
+
+
+
+        .close-btn:hover {
+
+            color: var(--primary-purple);
+
+        }
+
+
+
+        .modal-header {
+
+            padding: 30px 40px 10px 40px;
+
+        }
+
+
+
+        .modal-header h2 {
+
+            margin: 0;
+
+            color: var(--primary-purple);
+
+            font-size: 2rem;
+
+        }
+
+
+
+        .modal-body {
+
+            padding: 10px 40px 40px 40px;
+
+        }
+
+
+
+        /* MODAL CONTENT TYPOGRAPHY */
+
+        .modal-body h3 {
+
+            color: var(--secondary-purple);
+
+            border-bottom: 2px solid var(--light-green);
+
+            padding-bottom: 8px;
+
+            margin-top: 25px;
+
+        }
+
+       
+
+        .modal-body ul {
+
+            padding-left: 0;
+
+        }
+
+       
+
+        .modal-body ul li {
+
+            list-style: none;
+
+            margin-bottom: 12px;
+
+            padding-left: 30px;
+
+            position: relative;
+
+        }
+
+
+
+        .modal-body ul li::before {
+
+            content: "";
+
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%237ABF49' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+
+            width: 18px;
+
+            height: 18px;
+
+            background-size: cover;
+
+            position: absolute;
+
+            left: 0;
+
+            top: 3px;
+
+        }
+
+
+
+        /* AUDIO BUTTON STYLING */
+
+        .audio-btn {
+
+            background: transparent;
+
+            border: 1px solid var(--accent-green);
+
+            color: var(--accent-green);
+
+            border-radius: 20px;
+
+            padding: 6px 14px;
+
+            font-size: 0.9rem;
+
+            cursor: pointer;
+
+            margin-top: 5px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            transition: all 0.3s ease;
+
+            font-weight: 600;
+
+            min-width: 160px; /* Prevents jumping width when text changes */
+
+            justify-content: center;
+
+        }
+
+
+
+        .audio-btn:hover {
+
+            background-color: var(--accent-green);
+
+            color: var(--white);
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 4px 8px rgba(122, 191, 73, 0.2);
+
+        }
+
+
+
+        .audio-btn svg {
+
+            width: 16px;
+
+            height: 16px;
+
+            fill: none;
+
+            stroke: currentColor;
+
+            stroke-width: 2;
+
+            stroke-linecap: round;
+
+            stroke-linejoin: round;
+
+        }
+
+
+
+        .audio-btn.playing {
+
+            background-color: var(--accent-green);
+
+            color: var(--white);
+
+            animation: pulse-green 1.5s infinite;
+
+        }
+
+       
+
+        .audio-btn.paused {
+
+            background-color: var(--secondary-purple);
+
+            color: var(--white);
+
+            border-color: var(--secondary-purple);
+
+            animation: none;
+
+        }
+
+
+
+        @keyframes pulse-green {
+
+            0% { box-shadow: 0 0 0 0 rgba(122, 191, 73, 0.7); }
+
+            70% { box-shadow: 0 0 0 10px rgba(122, 191, 73, 0); }
+
+            100% { box-shadow: 0 0 0 0 rgba(122, 191, 73, 0); }
+
+        }
+
+
+
+        .info-box {
+
+            background-color: #f4f1fc;
+
+            border-left: 4px solid var(--primary-purple);
+
+            padding: 15px;
+
+            border-radius: 4px;
+
+            margin: 20px 0;
+
+        }
+
+
+
+        .contact-box {
+
+            background-color: #f0f7eb;
+
+            border: 1px solid var(--light-green);
+
+            border-radius: 8px;
+
+            padding: 20px;
+
+            margin-top: 20px;
+
+        }
+
+
+
+        /* FOOTER */
+
+        footer {
+
+            text-align: center;
+
+            padding: 20px;
+
+            background-color: var(--primary-purple);
+
+            color: rgba(255,255,255,0.7);
+
+            font-size: 0.9rem;
+
+            margin-top: auto;
+
+        }
+
+
+
+        /* ANIMATION FOR CONTENT */
+
+        .content-hidden { display: none; }
+
+
+
+        @media (max-width: 600px) {
+
+            .container { grid-template-columns: 1fr; }
+
+            .modal-content { width: 95%; max-height: 90vh; }
+
+            .modal-header, .modal-body { padding: 20px; }
+
+            header h1 { font-size: 2rem; }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+
+    <header>
+
+        <h1>Reporting Hub</h1>
+
+        <p>Interactive Training Module for Dental Assistants</p>
+
     </header>
 
-    <main class="flex-grow max-w-4xl mx-auto px-4 py-8 w-full space-y-12">
 
-        <!-- Intro Section -->
-        <section class="text-center space-y-4 fade-in">
-            <h2 class="text-3xl font-bold text-brand-dark">Why It Matters</h2>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                As a Dental Assistant, you are the guardian of a patient's personal information. 
-                Complete the activities below to verify your understanding of your legal and ethical obligations.
-            </p>
-            <div class="flex justify-center items-center space-x-2 text-sm text-brand-dark bg-white inline-block px-4 py-2 rounded-full shadow-sm mx-auto">
-                <i data-lucide="volume-2" class="w-4 h-4"></i>
-                <span>Audio enabled: Click "Listen" on scenarios or interact with quizzes for sound.</span>
-            </div>
-        </section>
 
-        <!-- Activity 1: Scenario Analysis -->
-        <section id="scenarios" class="space-y-6">
-            <div class="flex items-center space-x-2 border-b-2 border-brand-light pb-2">
-                <div class="bg-brand-dark text-white p-2 rounded-lg">
-                    <i data-lucide="users" class="w-5 h-5"></i>
-                </div>
-                <h3 class="text-2xl font-bold text-brand-dark">Part 1: Scenario Analysis</h3>
-            </div>
-            <p class="text-gray-600 italic">Read the scenarios (or click Listen) and reflect on the privacy breaches.</p>
+    <div class="container">
 
-            <div class="grid md:grid-cols-1 gap-6">
-                
-                <!-- Scenario A -->
-                <div class="glass-panel p-6 rounded-xl shadow-md border-l-4 border-brand-green hover:shadow-lg transition-shadow">
-                    <div class="flex justify-between items-start mb-2">
-                        <div class="flex items-center space-x-2">
-                            <h4 class="font-bold text-lg text-brand-dark">Scenario A: The Busy Front Desk</h4>
-                            <span class="bg-brand-bg text-brand-dark text-xs px-2 py-1 rounded font-semibold">Reception</span>
-                        </div>
-                        <button onclick="readText('Scenario A. You are working at the reception desk. You shout out, Hi Mr. Jones! Did that cold sore cream work? meanwhile, leaving Mrs. Smith\'s file open on the counter.', this)" class="text-brand-dark hover:text-brand-green p-1 rounded-full hover:bg-gray-100 transition-colors" title="Listen to Scenario">
-                            <i data-lucide="play-circle" class="w-6 h-6"></i>
-                        </button>
-                    </div>
-                    <p class="text-gray-700 mb-4 text-sm bg-blue-50 p-3 rounded border border-blue-100">
-                        You shout out, "Hi Mr. Jones! Did that cold sore cream work?" meanwhile, leaving Mrs. Smith's file open on the counter.
-                    </p>
-                    
-                    <div class="space-y-4">
-                        <div>
-                            <p class="font-semibold text-sm text-brand-dark mb-1">1. Identify two specific privacy breaches.</p>
-                            <textarea class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-brand-lightGreen focus:outline-none text-sm" rows="2" placeholder="Type your answer here..."></textarea>
-                        </div>
-                        <button onclick="toggleAnswer('ans-a')" class="text-sm text-brand-dark font-semibold hover:text-brand-green flex items-center transition-colors">
-                            <i data-lucide="eye" class="w-4 h-4 mr-1"></i> Reveal Model Answer
-                        </button>
-                        <div id="ans-a" class="hidden bg-green-50 p-4 rounded-lg border border-brand-lightGreen text-sm text-gray-800 animate-fade-in">
-                            <strong>Correct Analysis:</strong> <br>
-                            1. Yelling out sensitive medical questions (the cold sore).<br>
-                            2. Leaving patient files visible on the counter.<br>
-                            <em class="text-brand-dark mt-2 block">Fix: Keep voices low and screens/files hidden from view.</em>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Scenario B -->
-                <div class="glass-panel p-6 rounded-xl shadow-md border-l-4 border-brand-dark hover:shadow-lg transition-shadow">
-                    <div class="flex justify-between items-start mb-2">
-                        <div class="flex items-center space-x-2">
-                            <h4 class="font-bold text-lg text-brand-dark">Scenario B: The Concerned Spouse</h4>
-                            <span class="bg-brand-bg text-brand-dark text-xs px-2 py-1 rounded font-semibold">Family</span>
-                        </div>
-                         <button onclick="readText('Scenario B. Mrs. Lee\'s husband calls and says: I am the head of the household. Email me Mrs. Lee\'s X-rays immediately.', this)" class="text-brand-dark hover:text-brand-green p-1 rounded-full hover:bg-gray-100 transition-colors" title="Listen to Scenario">
-                            <i data-lucide="play-circle" class="w-6 h-6"></i>
-                        </button>
-                    </div>
-                    <p class="text-gray-700 mb-4 text-sm bg-blue-50 p-3 rounded border border-blue-100">
-                        Mrs. Lee's husband calls: "I am the head of the household. Email me Mrs. Lee's X-rays immediately."
-                    </p>
-                    
-                    <div class="space-y-4">
-                        <div>
-                            <p class="font-semibold text-sm text-brand-dark mb-1">1. Can you send the records without Mrs. Lee's consent?</p>
-                            <div class="flex space-x-4 mt-2">
-                                <label class="flex items-center space-x-2 cursor-pointer">
-                                    <input type="radio" name="scenario_b" class="accent-brand-dark"> <span>Yes, he pays the bills.</span>
-                                </label>
-                                <label class="flex items-center space-x-2 cursor-pointer">
-                                    <input type="radio" name="scenario_b" class="accent-brand-dark"> <span>No, never without consent.</span>
-                                </label>
-                            </div>
-                        </div>
-                        <button onclick="toggleAnswer('ans-b')" class="text-sm text-brand-dark font-semibold hover:text-brand-green flex items-center transition-colors">
-                            <i data-lucide="eye" class="w-4 h-4 mr-1"></i> Reveal Model Answer
-                        </button>
-                        <div id="ans-b" class="hidden bg-green-50 p-4 rounded-lg border border-brand-lightGreen text-sm text-gray-800 animate-fade-in">
-                            <strong>Correct Analysis:</strong> <br>
-                            <strong>No.</strong> We cannot give an adult's info to a spouse without permission, regardless of who pays or cultural hierarchy. Australian Privacy Law requires individual consent.
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Scenario C -->
-                <div class="glass-panel p-6 rounded-xl shadow-md border-l-4 border-brand-accent hover:shadow-lg transition-shadow">
-                    <div class="flex justify-between items-start mb-2">
-                        <div class="flex items-center space-x-2">
-                            <h4 class="font-bold text-lg text-brand-dark">Scenario C: The Interpreter</h4>
-                            <span class="bg-brand-bg text-brand-dark text-xs px-2 py-1 rounded font-semibold">Diversity</span>
-                        </div>
-                         <button onclick="readText('Scenario C. A patient arrives with a professional interpreter to help communicate. What must the interpreter do before starting?', this)" class="text-brand-dark hover:text-brand-green p-1 rounded-full hover:bg-gray-100 transition-colors" title="Listen to Scenario">
-                            <i data-lucide="play-circle" class="w-6 h-6"></i>
-                        </button>
-                    </div>
-                    <p class="text-gray-700 mb-4 text-sm bg-blue-50 p-3 rounded border border-blue-100">
-                        A patient arrives with a professional interpreter to help communicate.
-                    </p>
-                    
-                    <div class="space-y-4">
-                        <div>
-                            <p class="font-semibold text-sm text-brand-dark mb-1">What must the interpreter do before starting?</p>
-                            <select id="sel-c" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-brand-lightGreen focus:outline-none text-sm bg-white">
-                                <option>Select an action...</option>
-                                <option>Show their driver's license</option>
-                                <option>Sign a confidentiality agreement</option>
-                                <option>Pay a deposit</option>
-                            </select>
-                        </div>
-                        <button onclick="checkSelectC()" class="text-sm text-brand-dark font-semibold hover:text-brand-green flex items-center transition-colors">
-                            <i data-lucide="check-circle" class="w-4 h-4 mr-1"></i> Check Answer
-                        </button>
-                        <div id="ans-c" class="hidden bg-green-50 p-4 rounded-lg border border-brand-lightGreen text-sm text-gray-800 animate-fade-in">
-                            <strong>Correct!</strong> Interpreters must sign a confidentiality agreement to ensure they are bound by the same privacy laws as the staff.
-                        </div>
-                         <div id="ans-c-err" class="hidden bg-red-50 p-4 rounded-lg border border-red-300 text-sm text-red-800 animate-fade-in">
-                            Try again. Think about legal protection of information.
-                        </div>
-                    </div>
-                </div>
+        <!-- CARD 1 -->
+
+        <div class="card" onclick="openModal('modal-1')">
+
+            <div class="icon-circle">
+
+                <!-- Icon: Alert Triangle -->
+
+                <svg viewBox="0 0 24 24">
+
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+
+                    <line x1="12" y1="9" x2="12" y2="13"></line>
+
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+
+                </svg>
 
             </div>
-        </section>
 
-        <!-- Activity 2: Matching -->
-        <section class="space-y-6">
-            <div class="flex items-center space-x-2 border-b-2 border-brand-light pb-2">
-                <div class="bg-brand-dark text-white p-2 rounded-lg">
-                    <i data-lucide="arrow-left-right" class="w-5 h-5"></i>
-                </div>
-                <h3 class="text-2xl font-bold text-brand-dark">Part 2: Privacy vs. Confidentiality</h3>
-            </div>
-            <p class="text-gray-600">Click the button that matches the definition displayed.</p>
+            <h2>General Breaches</h2>
 
-            <div class="bg-white p-8 rounded-xl shadow-lg text-center relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-2 bg-brand-light"></div>
-                
-                <div id="match-container" class="transition-all duration-300">
-                    <p class="text-sm uppercase tracking-widest text-brand-light mb-2 font-bold">Definition</p>
-                    <h4 id="def-text" class="text-xl md:text-2xl font-bold text-brand-dark mb-8 min-h-[4rem] flex items-center justify-center">
-                        "The patient's right to control their own personal information."
-                    </h4>
+            <p class="preview">Infection control, equipment failures &amp; safety hazards.</p>
 
-                    <div class="grid grid-cols-2 gap-4 max-w-md mx-auto">
-                        <button onclick="checkMatch('Privacy')" class="py-4 px-6 rounded-lg border-2 border-brand-dark text-brand-dark font-bold hover:bg-brand-dark hover:text-white transition-all transform hover:-translate-y-1">
-                            Privacy
-                        </button>
-                        <button onclick="checkMatch('Confidentiality')" class="py-4 px-6 rounded-lg border-2 border-brand-green text-brand-green font-bold hover:bg-brand-green hover:text-white transition-all transform hover:-translate-y-1">
-                            Confidentiality
-                        </button>
-                    </div>
-                </div>
-                
-                <div id="match-feedback" class="hidden mt-6 font-bold text-lg"></div>
-            </div>
-        </section>
+            <div class="card-btn">Tap to View</div>
 
-        <!-- Activity 3: True or False -->
-        <section class="space-y-6">
-            <div class="flex items-center space-x-2 border-b-2 border-brand-light pb-2">
-                <div class="bg-brand-dark text-white p-2 rounded-lg">
-                    <i data-lucide="check-square" class="w-5 h-5"></i>
-                </div>
-                <h3 class="text-2xl font-bold text-brand-dark">Part 3: Compliance Checklist</h3>
-            </div>
-
-            <div class="space-y-4">
-                <!-- Q1 -->
-                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-brand-lightGreen">
-                    <p class="font-medium text-gray-800 mb-3">1. If a patient asks for a copy of their own X-rays, we are legally required to give it to them.</p>
-                    <div class="flex space-x-6">
-                        <label class="flex items-center space-x-2 cursor-pointer group">
-                            <div class="w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center group-hover:border-brand-green transition-colors">
-                                <input type="radio" name="q1" value="true" class="appearance-none w-3 h-3 rounded-full bg-transparent checked:bg-brand-green">
-                            </div>
-                            <span class="text-sm">True</span>
-                        </label>
-                        <label class="flex items-center space-x-2 cursor-pointer group">
-                            <div class="w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center group-hover:border-brand-dark transition-colors">
-                                <input type="radio" name="q1" value="false" class="appearance-none w-3 h-3 rounded-full bg-transparent checked:bg-brand-dark">
-                            </div>
-                            <span class="text-sm">False</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Q2 -->
-                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-brand-lightGreen">
-                    <p class="font-medium text-gray-800 mb-3">2. We can use patient email addresses for marketing purposes without asking, as long as they are already patients.</p>
-                    <div class="flex space-x-6">
-                        <label class="flex items-center space-x-2 cursor-pointer group">
-                            <div class="w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center group-hover:border-brand-green transition-colors">
-                                <input type="radio" name="q2" value="true" class="appearance-none w-3 h-3 rounded-full bg-transparent checked:bg-brand-green">
-                            </div>
-                            <span class="text-sm">True</span>
-                        </label>
-                        <label class="flex items-center space-x-2 cursor-pointer group">
-                            <div class="w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center group-hover:border-brand-dark transition-colors">
-                                <input type="radio" name="q2" value="false" class="appearance-none w-3 h-3 rounded-full bg-transparent checked:bg-brand-dark">
-                            </div>
-                            <span class="text-sm">False</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Q3 -->
-                <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-brand-lightGreen">
-                    <p class="font-medium text-gray-800 mb-3">3. The "Golden Rule" says: If it isn't necessary for treatment, don't collect it.</p>
-                    <div class="flex space-x-6">
-                        <label class="flex items-center space-x-2 cursor-pointer group">
-                            <div class="w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center group-hover:border-brand-green transition-colors">
-                                <input type="radio" name="q3" value="true" class="appearance-none w-3 h-3 rounded-full bg-transparent checked:bg-brand-green">
-                            </div>
-                            <span class="text-sm">True</span>
-                        </label>
-                        <label class="flex items-center space-x-2 cursor-pointer group">
-                            <div class="w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center group-hover:border-brand-dark transition-colors">
-                                <input type="radio" name="q3" value="false" class="appearance-none w-3 h-3 rounded-full bg-transparent checked:bg-brand-dark">
-                            </div>
-                            <span class="text-sm">False</span>
-                        </label>
-                    </div>
-                </div>
-
-                 <!-- Q4 -->
-                 <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-brand-lightGreen">
-                    <p class="font-medium text-gray-800 mb-3">4. Breaching privacy is just "bad manners," but it is not illegal.</p>
-                    <div class="flex space-x-6">
-                        <label class="flex items-center space-x-2 cursor-pointer group">
-                            <div class="w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center group-hover:border-brand-green transition-colors">
-                                <input type="radio" name="q4" value="true" class="appearance-none w-3 h-3 rounded-full bg-transparent checked:bg-brand-green">
-                            </div>
-                            <span class="text-sm">True</span>
-                        </label>
-                        <label class="flex items-center space-x-2 cursor-pointer group">
-                            <div class="w-5 h-5 rounded-full border-2 border-gray-300 flex items-center justify-center group-hover:border-brand-dark transition-colors">
-                                <input type="radio" name="q4" value="false" class="appearance-none w-3 h-3 rounded-full bg-transparent checked:bg-brand-dark">
-                            </div>
-                            <span class="text-sm">False</span>
-                        </label>
-                    </div>
-                </div>
-
-                <div class="pt-4">
-                    <button onclick="checkQuiz()" class="bg-brand-dark text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-brand-green transition-colors w-full sm:w-auto">
-                        Check My Compliance
-                    </button>
-                    <div id="quiz-result" class="hidden mt-4 p-4 rounded-lg text-center font-bold"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Activity 4: WHS & Safety (New Section) -->
-        <section class="space-y-6 pb-12">
-            <div class="flex items-center space-x-2 border-b-2 border-brand-light pb-2">
-                <div class="bg-brand-dark text-white p-2 rounded-lg">
-                    <!-- Alarm Icon for WHS -->
-                    <i data-lucide="siren" class="w-5 h-5"></i>
-                </div>
-                <h3 class="text-2xl font-bold text-brand-dark">Part 4: WHS & Safety Reporting</h3>
-            </div>
-            
-            <div class="glass-panel p-6 rounded-xl shadow-md border-l-4 border-red-500 hover:shadow-lg transition-shadow">
-                 <div class="flex justify-between items-start mb-2">
-                    <div class="flex items-center space-x-2">
-                        <h4 class="font-bold text-lg text-brand-dark">Scenario D: The Slippery Floor</h4>
-                        <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded font-semibold">Safety Hazard</span>
-                    </div>
-                     <button onclick="readText('Scenario D. You notice a puddle of water in the waiting room near the electrical cords. What is your immediate WHS obligation?', this)" class="text-brand-dark hover:text-brand-green p-1 rounded-full hover:bg-gray-100 transition-colors" title="Listen to Scenario">
-                        <i data-lucide="play-circle" class="w-6 h-6"></i>
-                    </button>
-                </div>
-                <p class="text-gray-700 mb-4 text-sm bg-red-50 p-3 rounded border border-red-100">
-                    You notice a puddle of water in the waiting room near the electrical cords.
-                </p>
-                
-                <div class="space-y-4">
-                    <div>
-                        <p class="font-semibold text-sm text-brand-dark mb-1">What is your immediate WHS obligation?</p>
-                        <div class="flex flex-col space-y-2 mt-2">
-                            <label class="flex items-center space-x-2 cursor-pointer p-2 rounded hover:bg-gray-50">
-                                <input type="radio" name="scenario_whs" class="accent-brand-dark" value="wrong"> <span>Wait for the cleaners to arrive tonight.</span>
-                            </label>
-                            <label class="flex items-center space-x-2 cursor-pointer p-2 rounded hover:bg-gray-50">
-                                <input type="radio" name="scenario_whs" class="accent-brand-dark" value="correct"> <span>Report it immediately and place a warning sign/cone.</span>
-                            </label>
-                            <label class="flex items-center space-x-2 cursor-pointer p-2 rounded hover:bg-gray-50">
-                                <input type="radio" name="scenario_whs" class="accent-brand-dark" value="wrong"> <span>Ignore it, it's not in the dental surgery room.</span>
-                            </label>
-                        </div>
-                    </div>
-                    <button onclick="checkWHS()" class="text-sm text-brand-dark font-semibold hover:text-brand-green flex items-center transition-colors">
-                        <i data-lucide="check-circle" class="w-4 h-4 mr-1"></i> Check Safety Response
-                    </button>
-                    <div id="ans-whs" class="hidden p-4 rounded-lg border text-sm text-gray-800 animate-fade-in"></div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-brand-dark text-brand-accent py-6 mt-auto">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <p class="text-sm">&copy; Dental Practice Training. Keep Patient Data Safe.</p>
         </div>
+
+
+
+        <!-- CARD 2 -->
+
+        <div class="card" onclick="openModal('modal-2')">
+
+            <div class="icon-circle">
+
+                <!-- Icon: Shield -->
+
+                <svg viewBox="0 0 24 24">
+
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+
+                </svg>
+
+            </div>
+
+            <h2>Mandatory Reporting</h2>
+
+            <p class="preview">Child protection obligations &amp; legal requirements.</p>
+
+            <div class="card-btn">Tap to View</div>
+
+        </div>
+
+
+
+        <!-- CARD 3 -->
+
+        <div class="card" onclick="openModal('modal-3')">
+
+            <div class="icon-circle">
+
+                <!-- Icon: Hard Hat (Activity) -->
+
+                <svg viewBox="0 0 24 24">
+
+                    <activity x="0" y="0">
+
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+
+                </svg>
+
+            </div>
+
+            <h2>WHS Issues</h2>
+
+            <p class="preview">Workplace health, safety risks &amp; Duty of Care.</p>
+
+            <div class="card-btn">Tap to View</div>
+
+        </div>
+
+
+
+        <!-- CARD 4 -->
+
+        <div class="card" onclick="openModal('modal-4')">
+
+            <div class="icon-circle">
+
+                <!-- Icon: Building/Landmark -->
+
+                <svg viewBox="0 0 24 24">
+
+                    <line x1="3" y1="21" x2="21" y2="21"></line>
+
+                    <line x1="9" y1="8" x2="9" y2="21"></line>
+
+                    <line x1="15" y1="8" x2="15" y2="21"></line>
+
+                    <path d="M4 21V7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14"></path>
+
+                    <path d="M12 5V3a2 2 0 0 0-2-2h-1"></path> <!-- Flag pole style -->
+
+                </svg>
+
+            </div>
+
+            <h2>Professional Bodies</h2>
+
+            <p class="preview">AHPRA, Dental Board &amp; External complaints.</p>
+
+            <div class="card-btn">Tap to View</div>
+
+        </div>
+
+
+
+    </div>
+
+
+
+    <!-- MODAL OVERLAY -->
+
+    <div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+
+        <div class="modal-content" onclick="event.stopPropagation()">
+
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+
+           
+
+            <!-- CONTENT INJECTION AREA -->
+
+            <div id="modal-content-area"></div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- HIDDEN CONTENT SOURCES -->
+
+    <div class="content-hidden">
+
+       
+
+        <!-- Content 1 -->
+
+        <div id="content-modal-1">
+
+            <div class="modal-header">
+
+                <h2>General Reporting Breaches</h2>
+
+            </div>
+
+            <div class="modal-body">
+
+                <p>Breaches of policies and procedures will occur. Reporting helps determine why an infringement occurred and prevents it from happening again.</p>
+
+               
+
+                <div class="info-box">
+
+                    <strong>Who to report to:</strong> Check with your workplace supervisor for the specific list of responsible persons.
+
+                </div>
+
+
+
+                <h3>Specific Incident Examples</h3>
+
+                <ul>
+
+                    <li>
+
+                        <strong>Breach of infection control policy:</strong> Report to the appropriate person (e.g., supervisor or practice manager).
+
+                        <br>
+
+                        <button class="audio-btn" onclick="toggleAudio(this, 'Scenario 1. Infection Control Breach. You notice a colleague has accidentally placed unsterile instruments onto a sterile tray setup. This is a breach of protocol. Do not use the tray. You must report this to the clinical coordinator immediately to ensure patient safety.')">
+
+                            <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+
+                            Listen to Scenario
+
+                        </button>
+
+                    </li>
+
+                    <li>
+
+                        <strong>Breakdown of equipment:</strong> (e.g., autoclave failure) Report immediately to ensure repairs are scheduled.
+
+                        <br>
+
+                        <button class="audio-btn" onclick="toggleAudio(this, 'Scenario 2. Equipment Breakdown. The morning autoclave cycle has failed and is displaying an error code. Do not attempt to use the instruments. Place an Out of Order sign on the machine and report the breakdown to the Practice Manager so a technician can be called.')">
+
+                            <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+
+                            Listen to Scenario
+
+                        </button>
+
+                    </li>
+
+                    <li>
+
+                        <strong>Safety hazards:</strong> (e.g., overhanging power cords) Report to the appropriate person and suggest a fix.
+
+                        <br>
+
+                        <button class="audio-btn" onclick="toggleAudio(this, 'Scenario 3. Safety Hazard. You notice the curing light power cord is stretched across the walkway in Surgery 2. This is a trip hazard. Unplug it immediately to make the area safe, then report the hazard to your supervisor and suggest moving the unit closer to the wall socket.')">
+
+                            <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+
+                            Listen to Scenario
+
+                        </button>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Content 2 -->
+
+        <div id="content-modal-2">
+
+            <div class="modal-header">
+
+                <h2>Mandatory Reporting (Child Protection)</h2>
+
+            </div>
+
+            <div class="modal-body">
+
+                <p>Dental professionals have strict legal obligations regarding the protection of children.</p>
+
+                <ul>
+
+                    <li><strong>Who is a Mandatory Reporter?</strong> Dentists and allied health professionals (including dental assistants delivering services to children).</li>
+
+                    <li><strong>Legal Requirement:</strong> You must report evidence of suspected child abuse or neglect.</li>
+
+                    <li><strong>Priority:</strong> The duty of care to report abuse carries greater weight than patient confidentiality.</li>
+
+                </ul>
+
+               
+
+                <div class="contact-box">
+
+                    <h3>Contact for Reporting</h3>
+
+                    <p><strong>Child Protection Helpline:</strong> 13 2111</p>
+
+                    <p><strong>NSW Dept. of Family & Community Services:</strong> Responsible for handling reports in NSW.</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Content 3 -->
+
+        <div id="content-modal-3">
+
+            <div class="modal-header">
+
+                <h2>Workplace Health and Safety (WHS)</h2>
+
+            </div>
+
+            <div class="modal-body">
+
+                <p>All workplaces must have a consultation process in place for safety.</p>
+
+                <ul>
+
+                    <li><strong>Duty of Care:</strong> You have a legal duty to report any unethical behaviour or safety risks to your supervisor.</li>
+
+                    <li><strong>WorkCover:</strong> Government inspectors can advise on premises or impose fines for breaches of the WHS Act.</li>
+
+                </ul>
+
+                <p><em>Always prioritize your safety and the safety of your patients.</em></p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Content 4 -->
+
+        <div id="content-modal-4">
+
+            <div class="modal-header">
+
+                <h2>Reporting to Professional Bodies</h2>
+
+            </div>
+
+            <div class="modal-body">
+
+                <p>Certain situations require reporting to external regulatory bodies.</p>
+
+                <h3>Key Authorities</h3>
+
+                <ul>
+
+                    <li><strong>Dental Board of Australia:</strong> Handles notifications, complaints, and disciplinary hearings.</li>
+
+                    <li><strong>AHPRA:</strong> Manages complaints about health, performance, and conduct of practitioners.</li>
+
+                    <li><strong>HCCC (Health Care Complaints Commission):</strong> In NSW, complaints regarding services can be made here.</li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+
+    <footer>
+
+        <p>&copy; 2023 Dental Assistant Training | Interactive Resources</p>
+
     </footer>
 
-    <!-- Scripts -->
+
+
     <script>
-        // Initialize Icons ensuring DOM is ready
-        document.addEventListener('DOMContentLoaded', () => {
-            if (window.lucide) {
-                lucide.createIcons();
-            }
-        });
 
-        /* --- AUDIO SYSTEM --- */
-        let audioCtx;
+        function openModal(contentId) {
 
-        // 1. Sound Effects (Synth)
-        // Initialize AudioContext lazily on user interaction
-        function initAudio() {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            if (audioCtx.state === 'suspended') {
-                audioCtx.resume();
-            }
+            const overlay = document.getElementById('modal-overlay');
+
+            const contentArea = document.getElementById('modal-content-area');
+
+            const sourceContent = document.getElementById('content-' + contentId);
+
+           
+
+            // Inject content
+
+            contentArea.innerHTML = sourceContent.innerHTML;
+
+           
+
+            // Show modal
+
+            overlay.classList.add('active');
+
         }
 
-        function playTone(freq, type, duration) {
-            // Ensure audio context is ready
-            initAudio();
 
-            if (audioCtx) {
-                const osc = audioCtx.createOscillator();
-                const gainNode = audioCtx.createGain();
 
-                osc.type = type; // 'sine', 'square', 'sawtooth', 'triangle'
-                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-                
-                gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+        function closeModal(event) {
 
-                osc.connect(gainNode);
-                gainNode.connect(audioCtx.destination);
+            // Stop audio if playing
 
-                osc.start();
-                osc.stop(audioCtx.currentTime + duration);
-            }
-        }
-
-        function playSuccess() {
-            // High ping
-            playTone(600, 'sine', 0.1);
-            setTimeout(() => playTone(800, 'sine', 0.2), 100);
-        }
-
-        function playError() {
-            // Low buzz
-            playTone(200, 'sawtooth', 0.3);
-        }
-
-        // 2. Text to Speech
-        function readText(text, btn) {
-            // Stop any current speech
             window.speechSynthesis.cancel();
-            
-            // Create utterance
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.lang = 'en-AU'; // Prefer Australian English if available
-            utterance.rate = 1.0;
-            utterance.pitch = 1.0;
 
-            // Visual feedback
-            if(btn) {
-                btn.classList.add('speaking');
-                // Replace icon with stop
-                btn.innerHTML = '<i data-lucide="stop-circle" class="w-6 h-6"></i>';
-                lucide.createIcons();
-                
-                // Add click handler to stop
-                btn.onclick = () => {
-                    window.speechSynthesis.cancel();
-                };
+            resetAllButtons();
+
+           
+
+            // Close if clicking overlay or close button
+
+            const overlay = document.getElementById('modal-overlay');
+
+            overlay.classList.remove('active');
+
+        }
+
+
+
+        // Global tracking for audio state
+
+        let currentBtn = null;
+
+       
+
+        function resetAllButtons() {
+
+            document.querySelectorAll('.audio-btn').forEach(b => {
+
+                b.classList.remove('playing', 'paused');
+
+                b.innerHTML = `
+
+                    <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+
+                    Listen to Scenario
+
+                `;
+
+            });
+
+            currentBtn = null;
+
+        }
+
+
+
+        function toggleAudio(btn, text) {
+
+            const synth = window.speechSynthesis;
+
+
+
+            // Check if we are clicking the SAME button that is currently active
+
+            if (currentBtn === btn) {
+
+                if (synth.speaking && !synth.paused) {
+
+                    // If speaking, PAUSE
+
+                    synth.pause();
+
+                    btn.classList.remove('playing');
+
+                    btn.classList.add('paused');
+
+                    btn.innerHTML = `
+
+                        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+
+                        Resume
+
+                    `;
+
+                    return;
+
+                }
+
+                if (synth.paused) {
+
+                    // If paused, RESUME
+
+                    synth.resume();
+
+                    btn.classList.remove('paused');
+
+                    btn.classList.add('playing');
+
+                    btn.innerHTML = `
+
+                        <svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+
+                        Pause
+
+                    `;
+
+                    return;
+
+                }
+
             }
 
-            utterance.onend = () => {
-                if(btn) {
-                    btn.classList.remove('speaking');
-                    btn.innerHTML = '<i data-lucide="play-circle" class="w-6 h-6"></i>';
-                    lucide.createIcons();
-                    // Reset click handler
-                    btn.onclick = () => readText(text, btn);
-                }
+
+
+            // If clicking a NEW button or starting fresh
+
+            if (currentBtn && currentBtn !== btn) {
+
+                resetAllButtons(); // Reset previous button
+
+                synth.cancel(); // Stop previous audio
+
+            }
+
+
+
+            // Start New Audio
+
+            currentBtn = btn;
+
+           
+
+            // VOICE SELECTION LOGIC
+
+            const voices = synth.getVoices();
+
+            // 1. Look for specific high-quality Female AU voices
+
+            let targetVoice = voices.find(v => v.lang === 'en-AU' && (v.name.includes('Catherine') || v.name.includes('Karen')));
+
+            // 2. Look for any voice with 'Female' in the name within en-AU
+
+            if (!targetVoice) {
+
+                targetVoice = voices.find(v => v.lang === 'en-AU' && v.name.includes('Female'));
+
+            }
+
+            // 3. Fallback to Google AU (often female by default)
+
+            if (!targetVoice) {
+
+                targetVoice = voices.find(v => v.lang === 'en-AU' && v.name.includes('Google'));
+
+            }
+
+            // 4. General Fallback to any en-AU voice
+
+            if (!targetVoice) {
+
+                targetVoice = voices.find(v => v.lang === 'en-AU');
+
+            }
+
+
+
+            const utterance = new SpeechSynthesisUtterance(text);
+
+            if (targetVoice) utterance.voice = targetVoice;
+
+            utterance.lang = 'en-AU';
+
+            utterance.rate = 0.95;
+
+            utterance.pitch = 1.1;
+
+
+
+            // Update Button UI to "Playing"
+
+            btn.classList.add('playing');
+
+            btn.innerHTML = `
+
+                <svg viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+
+                Pause
+
+            `;
+
+
+
+            // When finished, reset button
+
+            utterance.onend = function() {
+
+                btn.classList.remove('playing');
+
+                btn.classList.remove('paused');
+
+                btn.innerHTML = `
+
+                    <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+
+                    Listen to Scenario
+
+                `;
+
+                currentBtn = null;
+
             };
 
-            window.speechSynthesis.speak(utterance);
+
+
+            synth.speak(utterance);
+
         }
 
+       
 
-        // SCENARIOS
-        function toggleAnswer(id) {
-            const el = document.getElementById(id);
-            if (el.classList.contains('hidden')) {
-                el.classList.remove('hidden');
-                // Optional: small click sound
-            } else {
-                el.classList.add('hidden');
-            }
-        }
+        // Ensure voices are loaded (for Chrome)
 
-        function checkSelectC() {
-            const val = document.getElementById('sel-c').value;
-            const success = document.getElementById('ans-c');
-            const error = document.getElementById('ans-c-err');
-            
-            success.classList.add('hidden');
-            error.classList.add('hidden');
+        window.speechSynthesis.onvoiceschanged = function() {
 
-            if (val === "Sign a confidentiality agreement") {
-                success.classList.remove('hidden');
-                playSuccess();
-            } else {
-                error.classList.remove('hidden');
-                playError();
-            }
-        }
+            window.speechSynthesis.getVoices();
 
-        // MATCHING GAME
-        const definitions = [
-            { text: "The patient's right to control their own personal information.", type: "Privacy" },
-            { text: "Your duty to protect that information once it is shared.", type: "Confidentiality" },
-            { text: "The 'Golden Rule': If it isn't necessary, don't collect it.", type: "Privacy" },
-            { text: "Ensuring an interpreter signs a non-disclosure agreement.", type: "Confidentiality" }
-        ];
-        
-        let currentDefIndex = 0;
+        };
 
-        function checkMatch(selectedType) {
-            const feedback = document.getElementById('match-feedback');
-            const currentDef = definitions[currentDefIndex];
-            
-            if (selectedType === currentDef.type) {
-                feedback.textContent = "Correct! Well done.";
-                feedback.className = "mt-6 font-bold text-lg text-brand-green animate-pulse";
-                playSuccess();
-                
-                // Move to next after short delay
-                setTimeout(() => {
-                    feedback.textContent = "";
-                    currentDefIndex++;
-                    if (currentDefIndex < definitions.length) {
-                        document.getElementById('def-text').textContent = `"${definitions[currentDefIndex].text}"`;
-                    } else {
-                        // Reset
-                        currentDefIndex = 0;
-                        document.getElementById('def-text').innerHTML = "<span class='text-brand-green'>All definitions matched!</span> <br> <span class='text-sm font-normal text-gray-500'>Starting over...</span>";
-                        setTimeout(() => {
-                            document.getElementById('def-text').textContent = `"${definitions[0].text}"`;
-                        }, 2000);
-                    }
-                }, 1000);
-
-            } else {
-                feedback.textContent = "Incorrect. Try again.";
-                feedback.className = "mt-6 font-bold text-lg text-red-500";
-                playError();
-            }
-            feedback.classList.remove('hidden');
-        }
-
-        // QUIZ
-        function checkQuiz() {
-            let score = 0;
-            const total = 4;
-            
-            // Answers: 1=True, 2=False, 3=True, 4=False
-            const q1 = document.querySelector('input[name="q1"]:checked')?.value;
-            const q2 = document.querySelector('input[name="q2"]:checked')?.value;
-            const q3 = document.querySelector('input[name="q3"]:checked')?.value;
-            const q4 = document.querySelector('input[name="q4"]:checked')?.value;
-
-            if (q1 === "true") score++;
-            if (q2 === "false") score++;
-            if (q3 === "true") score++;
-            if (q4 === "false") score++;
-
-            const resultDiv = document.getElementById('quiz-result');
-            resultDiv.classList.remove('hidden');
-            
-            if (score === total) {
-                resultDiv.className = "mt-4 p-4 rounded-lg text-center font-bold bg-brand-green text-white shadow-lg";
-                resultDiv.innerHTML = `Perfect Score! ${score}/${total} <br> <span class="text-sm font-normal">You are a Guardian of Information!</span>`;
-                playSuccess();
-            } else {
-                resultDiv.className = "mt-4 p-4 rounded-lg text-center font-bold bg-brand-light text-brand-dark";
-                resultDiv.innerHTML = `You got ${score}/${total}. <br> <span class="text-sm font-normal">Review the scenarios and try again to ensure full compliance.</span>`;
-                playError();
-            }
-        }
-
-        // WHS CHECK
-        function checkWHS() {
-            const val = document.querySelector('input[name="scenario_whs"]:checked')?.value;
-            const result = document.getElementById('ans-whs');
-            
-            if (!val) return;
-
-            result.classList.remove('hidden');
-            result.classList.remove('bg-green-50', 'border-brand-lightGreen', 'bg-red-50', 'border-red-300');
-
-            if (val === 'correct') {
-                result.classList.add('bg-green-50', 'border', 'border-brand-lightGreen');
-                result.innerHTML = "<strong>Correct!</strong> Under WHS laws, you must address immediate hazards to prevent injury.";
-                playSuccess();
-            } else {
-                result.classList.add('bg-red-50', 'border', 'border-red-300');
-                result.innerHTML = "<strong>Incorrect.</strong> Ignoring hazards can lead to serious injury and liability. Always report and secure the area.";
-                playError();
-            }
-        }
     </script>
+
+
+
 </body>
+
 </html>
